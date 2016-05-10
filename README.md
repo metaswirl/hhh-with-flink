@@ -8,4 +8,4 @@ Make sure to install and start Flink as described on their website:
 The PCAP sources have been taken from the Mawi trace <http://mawi.wide.ad.jp/mawi/> and the BGP data can be found at <https://www.caida.org/data/routing/routeviews-prefix2as.xml>.
 
 The project can be compiled with sbt, a *build.sbt* is included. sbt can be
-found at <www.scala-sbt.org/>.
+found at <http://www.scala-sbt.org/>.

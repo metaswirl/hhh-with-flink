@@ -15,4 +15,10 @@ lazy val pcap2flink_standalone = (project in file(".")).
   settings(noScala: _*).
   settings(
     name := "pcap2flink_standalone",
-    mainClass in Compile := Some("berlin.bbdc.inet.pcap2flink_standalone.FlinkJob"))
+    mainClass in Compile := Some("berlin.bbdc.inet.pcap2flink_standalone.FlinkJob")).
+  dependsOn(exceptions)
+
+lazy val exceptions = (project in file("exceptions")).
+  settings(commonSettings: _*).
+  settings(noScala: _*).
+  settings(name := "exceptions")

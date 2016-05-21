@@ -25,7 +25,6 @@ public class TrieTest {
         int asn = 1000;
         Trie trie = new Trie(10);
         trie.insertAS(ip1, size1, asn);
-        System.out.println(trie);
         assertNotNull(trie.root);
         assertNull(trie.root.left);
         assertNotNull(trie.root.right);
@@ -34,7 +33,6 @@ public class TrieTest {
         assertEquals(asn, trie.root.right.asn);
 
         trie.insertAS(ip2, size2, asn);
-        System.out.println(trie);
         assertNotNull(trie.root.left);
         assertEquals(1, trie.root.left.left.left.right.value);
         assertEquals(4, trie.root.left.left.left.right.depth);
@@ -43,11 +41,27 @@ public class TrieTest {
 
     @Test
     public void insertIP() {
-        Trie trie = new Trie(10);
-        long ip = 0b10000000_00000000_00000000_00000000L;
+        Trie trie = new Trie(4);
+        long ip = 0b11000000_00000000_00000000_00000000L;
         int size = 3;
+        // create node right
         trie.insertIP(ip, size);
         assertNotNull(trie.root);
-        assertEquals(size, trie.root.volume);
+        assertNotNull(trie.root.right);
+        assertEquals(size, trie.root.right.volume);
+        // create node right right
+        trie.insertIP(ip, size);
+        assertNotNull(trie.root.right.right);
+        assertEquals(size, trie.root.right.right.volume);
+        ip = 0b00100000_00000000_00000000_00000000L;
+        size = 1;
+        trie.insertIP(ip, size);
+        assertNotNull(trie.root.left);
+        assertNull(trie.root.left.left);
+        assertEquals(size, trie.root.left.volume);
+        trie.insertIP(ip, size);
+        assertNotNull(trie.root.left);
+        assertNull(trie.root.left.left);
+        assertEquals(2*size, trie.root.left.volume);
     }
 }

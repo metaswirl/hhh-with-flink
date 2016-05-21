@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RouteViewSource implements SourceFunction<Tuple3> {
+public class RouteViewSource implements SourceFunction<Tuple3<Long, Integer, Integer>> {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,7 @@ public class RouteViewSource implements SourceFunction<Tuple3> {
     }
 
     @Override
-    public void run(SourceContext<Tuple3> ctx) throws Exception {
+    public void run(SourceContext<Tuple3<Long, Integer, Integer>> ctx) throws Exception {
         LOG.info("Opening file" + this.path);
         PcapHandle handle;
         BufferedReader reader;
@@ -67,7 +67,7 @@ public class RouteViewSource implements SourceFunction<Tuple3> {
                 else
                     asn = Integer.parseInt(fields[1]);
 
-                ctx.collect(new Tuple3<>(ipaddr, snsize, asn));
+                ctx.collect(new Tuple3<Long, Integer, Integer>(ipaddr, snsize, asn));
             } catch (Exception e) {
                 LOG.error("an exception was thrown", e);
                 throw e;

@@ -16,6 +16,12 @@ public class Utils {
             result = result << 8 | (b & 0xFF);
         return result;
     }
+    public static long byteIPtoNrIP(byte[] byteip) throws UnknownHostException {
+        long result = 0;
+        for (byte b: byteip)
+            result = result << 8 | (b & 0xFF);
+        return result;
+    }
     public static String nrIPtoStrIP(long nrip) {
         String strip = "";
         for (int i=3; i>=0; i--) {
